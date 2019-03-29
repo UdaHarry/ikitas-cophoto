@@ -18,3 +18,7 @@ DB_PORT=3306 <br>
 DB_DATABASE=photo_db <br>
 DB_USERNAME=root <br>
 DB_PASSWORD= <br>
+
+#### Login Default
+Email : ikitas@gmail.com
+Password : ikitas
