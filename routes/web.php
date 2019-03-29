@@ -26,6 +26,10 @@ Route::group(['middleware'=>['auth']],function(){
 
     /*-----==========Back End==========-----*/
     Route::get('/my-admin','PrDefaultController@index')->name('my-admin');
+        // Landing Top
+        Route::get('/my-admin/{id}/editTop','PrDefaultController@editTop');
+        Route::post('/my-admin/{id}/updateTop','PrDefaultController@updateTop');
+        Route::get('/my-admin/{id}/editOther','PrDefaultController@editOther');
 
     // Primary Layout
     Route::get('/my-admin/primary-layout/default','PrDefaultController@index')->name('pr-default');

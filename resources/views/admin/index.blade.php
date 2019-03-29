@@ -87,9 +87,9 @@
             <h6 class="card-title">Header Area</h6>
             <!-- nama Web -->
             <div class="form-group row">
-                <label for="nama-web" class="col-sm-4 col-form-label">Website Name</label>
+                <label for="webname" class="col-sm-4 col-form-label">Website Name</label>
                 <div class="col-sm-7">
-                <input type="text" class="form-control" id="nama-web" maxlength="25">
+                <input type="text" class="form-control" id="webname" maxlength="25">
                 </div>
             </div>
             <!-- nama Web -->
@@ -121,23 +121,23 @@
             <h6 class="card-title">Footer Area</h6>
             <!-- about us -->
             <div class="form-group row">
-                <label for="nama-web" class="col-sm-4 col-form-label">About Us</label>
+                <label for="about" class="col-sm-4 col-form-label">About Us</label>
                 <div class="col-sm-7">
-                <textarea class="form-control" id="nama-web" rows="3"></textarea>
+                <textarea class="form-control" id="about" rows="4" maxlength="90"></textarea>
                 </div>
             </div>
             <!-- about us -->
 
             <!-- Follow Us -->
             <div class="form-group row">
-                <label for="nama-web" class="col-sm-4 col-form-label">Follow Us</label>
+                <label class="col-sm-4 col-form-label">Follow Us</label>
                 <div class="col-sm-7">
                     <!-- facebook -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-facebook" font-weight-bold"></i></span>
                         </div>
-                        <input id="maps" type="text" class="form-control" name="maps">
+                        <input id="fb" type="text" class="form-control" name="fb">
                     </div>
                     <!-- facebook -->
 
@@ -146,7 +146,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-twitter"></i></span>
                         </div>
-                        <input id="maps" type="text" class="form-control" name="maps">
+                        <input id="twit" type="text" class="form-control" name="twit">
                     </div>
                     <!-- Twitter -->
 
@@ -155,7 +155,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-instagram"></i></span>
                         </div>
-                        <input id="maps" type="text" class="form-control" name="maps">
+                        <input id="ig" type="text" class="form-control" name="ig">
                     </div>
                     <!-- Instagram -->
 
@@ -164,7 +164,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-linkedin font-weight-bold"></i></span>
                         </div>
-                        <input id="maps" type="text" class="form-control" name="maps">
+                        <input id="linked" type="text" class="form-control" name="linked">
                     </div>
                     <!-- linkedin -->
                 </div>
@@ -195,10 +195,6 @@
 
 @section('addScript')
 <script>
-    $(function(){
-       $("#pr-def").addClass("active"); 
-    });
-
     $("input[type='file'][id$='about-img']").change(function(e){
         var fileName = e.target.files[0].name;
         $('.inp-1').html(fileName);
@@ -214,10 +210,45 @@
         $('.inp-3').html(fileName);
     });
 
-    /** Preview Top Landing Sementara Sebelum Masuk ke JS */
-    $('.prev-homelanding').html('<img src="{{ asset("srcFront/img/banner/banner-2.jpg")}}" alt="" class="img-fluid" >');
-    $('.prev-banner').html('<img src="{{ asset("srcFront/img/banner/banner.jpg")}}" alt="" class="img-fluid" >');
-    $('.prev-icon').html('<img src="{{ asset("srcAdmin/img/logo-2.png")}}" alt="" class="img-fluid" >');
+    $(function(){
+       $("#pr-def").addClass("active"); 
+       prDefaultTop();
+       prDefaultOther();
+    });
 
+    function prDefaultTop(){
+        $.ajax({
+        url : "/my-admin/1/editTop",
+        type : "GET",
+        dataType : "JSON",
+        success : function(data){
+          $('.prev-homelanding').html('<img src="'+data.gambar_landing+'" alt="" class="img-fluid" >');
+          $('.prev-banner').html('<img src="'+data.gambar_banner+'" alt="" class="img-fluid" >');
+        },
+        error : function(){
+          alert("Tidak dapat menyimpan data!");
+        }   
+      });
+    }
+
+    function prDefaultOther(){
+        $.ajax({
+        url : "/my-admin/1/editOther",
+        type : "GET",
+        dataType : "JSON",
+        success : function(data){
+            $('#webname').val(data.webname);
+            $('.prev-icon').html('<img src="{{ asset("img/logo/logo-2.png")}}" alt="" class="img-fluid" >');
+            $('#about').val(data.about);
+            $('#fb').val(data.fb);
+            $('#twit').val(data.twit);
+            $('#ig').val(data.ig);
+            $('#linked').val(data.linked);
+        },
+        error : function(){
+          alert("Tidak dapat menyimpan data!");
+        }   
+      });
+    }
 </script>
 @endsection
