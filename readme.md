@@ -8,4 +8,13 @@
 </p>
 
 # Ikitas Company Profile
-
+## Setting Database
+#### Buat database
+buat database dengan nama <b>photo_db</b>, format <b>utf8_unicode_ci</b>
+#### Setting file .env sebagai berikut
+DB_CONNECTION=mysql <br>
+DB_HOST=127.0.0.1 <br>
+DB_PORT=3306 <br>
+DB_DATABASE=photo_db <br>
+DB_USERNAME=root <br>
+DB_PASSWORD= <br>
