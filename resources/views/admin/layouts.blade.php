@@ -52,7 +52,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li id="pr-def" class="nav-item">
-        <a class="nav-link" href="{{ route('pr-default')}}">
+        <a class="nav-link" href="{{ route('my-admin')}}">
           <i class="fas fa-fw fa-cog"></i>
           <span>Default</span></a>
       </li>

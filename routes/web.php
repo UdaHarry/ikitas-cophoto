@@ -32,17 +32,18 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/my-admin/{id}/editOther','PrDefaultController@editOther');
         Route::post('/my-admin/{id}/updateOther','PrDefaultController@updateOther');
 
-    // Primary Layout
-    Route::get('/my-admin/primary-layout/default','PrDefaultController@index')->name('pr-default');
-
     // Secondary Layout
+    // --Galeri
     Route::get('/my-admin/secondary-layout/galeri','ScGaleriController@galeri')->name('sc-galeri');
+    // --Service
     Route::get('/my-admin/secondary-layout/service','ScServiceController@service')->name('sc-service');
+    // --About
     Route::get('/my-admin/secondary-layout/sambutan','ScAboutController@sambutan')->name('sc-sambutan');
-    Route::get('/my-admin/secondary-layout/pengenalan','ScAboutController@pengenalan')->name('sc-pengenalan');
     Route::get('/my-admin/secondary-layout/team','ScAboutController@team')->name('sc-team');
+    // --Contact
     Route::get('/my-admin/secondary-layout/kontak','ScContactController@kontak')->name('sc-kontak');
-    Route::get('/my-admin/secondary-layout/pesan','ScContactController@pesan')->name('sc-pesan');
+    Route::get('/my-admin/{id}/editKontak','ScContactController@editKontak');
+    Route::post('/my-admin/{id}/updateKontak','ScContactController@updateKontak');
 
     /*-----==========Back End==========-----*/
 

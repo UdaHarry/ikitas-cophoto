@@ -1,26 +1,19 @@
 @extends('admin.layouts')
 
 @section('content')
-        
+    @if(session('sukses'))
+    <div class="alert alert-success a" role="alert">
+        <i class="icon fa fa-check"></i>
+        {{session('sukses')}}
+    </div>
+    @endif
+
         <div class="row">
           <!-- Area Landing-->
           <div class="col-lg-6 col-md-6">
-            <form id="form-update" method="POST" enctype="multipart/form-data">
+          <form id="form-top" method="POST" enctype="multipart/form-data" action="/my-admin/1/updateKontak">
               @csrf
               <div class="shadow card mb-3">
-
-
-                <div class="alert alert-success alert-dismissible" style="display:none">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <i class="icon fa fa-check"></i>
-                  Perubahan berhasil disimpan.
-                </div>
-
-                <div class="alert alert-danger alert-dismissible" style="display:none">
-                  <i class="icon fa fa-check"></i>
-                  Perubahan gagal disimpan.
-                </div>
-
                 <!-- card header -->
                 <div class="card-header">
                   <i class="fas fa-address-book"></i>
@@ -31,8 +24,9 @@
                 <!-- card body -->
                 <div class="card-body">
                   <h4>Location</h4>
-                  <iframe id="prev-maps" src="" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+                  <!-- <iframe id="prev-maps" src="" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+                  <div id="prev-maps">
+                  </div>
                   <!-- update text -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -43,6 +37,16 @@
                   <!-- update text -->
                   
                   <h4>Contact</h4>
+
+                  <!-- update text -->
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-home"></i></span>
+                    </div>
+                    <input id="home" type="text" class="form-control" name="home">
+                  </div>
+                  <!-- update text -->
+
                   <!-- update text -->
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -58,15 +62,6 @@
                       <span class="input-group-text"><i class="fas fa-phone"></i></span>
                     </div>
                     <input id="telepon" type="tel" class="form-control" name="telepon">
-                  </div>
-                  <!-- update text -->
-
-                  <!-- update text -->
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
-                    </div>
-                    <input id="hp" type="tel" class="form-control" name="hp">
                   </div>
                   <!-- update text -->
 
@@ -99,7 +94,33 @@
 @section('addScript')
 <script>
     $(function(){
-       $("#sc-con").addClass("active"); 
+       $("#sc-con").addClass("active");
+       showData();
+       setTimeout(function(){
+            $("div.alert").remove();
+        }, 5000 );
     });
+
+    function showData(){
+      $.ajax({
+        url : "/my-admin/1/editKontak",
+        type : "GET",
+        dataType : "JSON",
+        success : function(data){
+          // $('#prev-maps').attr('src',data.maps);
+          $('#prev-maps').html(data.maps);
+          $('iframe').height(300).width('100%');
+          $('#maps').val(data.maps);
+          $('#home').val(data.home);
+          $('#email').val(data.email);
+          $('#telepon').val(data.telepon);
+          $('#whatsapp').val(data.whatsapp);
+        },
+        error : function(){
+          alert("Tidak dapat menyimpan data!");
+        }   
+      });
+    }
+
 </script>
 @endsection

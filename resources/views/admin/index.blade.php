@@ -105,7 +105,7 @@
             <div class="form-group row">
                 <label for="webname" class="col-sm-4 col-form-label">Website Name</label>
                 <div class="col-sm-7">
-                <input type="text" class="form-control" id="webname" name="webname" maxlength="25">
+                <input type="text" class="form-control" id="webname" name="webname" maxlength="25" required>
                 </div>
             </div>
             <!-- nama Web -->
@@ -139,7 +139,7 @@
             <div class="form-group row">
                 <label for="about-text"  class="col-sm-4 col-form-label">About Us<br><p class="d-inline" style="font-size: 8pt;color:red;"><i>Max 110 character</i></p></label>
                 <div class="col-sm-7">
-                    <textarea class="form-control" id="about-text" rows="4" name="about-text" maxlength="110"></textarea>
+                    <textarea class="form-control" id="about-text" rows="4" name="about-text" maxlength="110" required></textarea>
                 </div>
             </div>
             <!-- about us -->
@@ -153,7 +153,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-facebook" font-weight-bold"></i></span>
                         </div>
-                        <input id="fb" type="text" class="form-control" name="fb">
+                        <input id="fb" type="text" class="form-control" name="fb" required>
                     </div>
                     <!-- facebook -->
 
@@ -162,7 +162,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-twitter"></i></span>
                         </div>
-                        <input id="twit" type="text" class="form-control" name="twit">
+                        <input id="twit" type="text" class="form-control" name="twit" required>
                     </div>
                     <!-- Twitter -->
 
@@ -171,7 +171,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-instagram"></i></span>
                         </div>
-                        <input id="ig" type="text" class="form-control" name="ig">
+                        <input id="ig" type="text" class="form-control" name="ig" required>
                     </div>
                     <!-- Instagram -->
 
@@ -180,7 +180,7 @@
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fab fa-linkedin font-weight-bold"></i></span>
                         </div>
-                        <input id="linked" type="text" class="form-control" name="linked">
+                        <input id="linked" type="text" class="form-control" name="linked" required>
                     </div>
                     <!-- linkedin -->
                 </div>
@@ -257,7 +257,7 @@
         dataType : "JSON",
         success : function(data){
             $('#webname').val(data.webname);
-            $('.prev-icon').html('<img src="{{ asset("img/logo/logo-2.png")}}" alt="" class="img-fluid" >');
+            $('.prev-icon').html('<img src="'+data.webicon+'" alt="" class="img-fluid" >');
             $('#about-text').val(data.about);
             $('#fb').val(data.fb);
             $('#twit').val(data.twit);
