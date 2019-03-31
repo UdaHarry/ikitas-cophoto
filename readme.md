@@ -22,3 +22,6 @@ DB_PASSWORD= <br>
 #### Login Default
 Email : ikitas@gmail.com
 Password : ikitas
+
+#### Mengaktifkan storage
+php artisan storage:link

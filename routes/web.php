@@ -30,6 +30,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/my-admin/{id}/editTop','PrDefaultController@editTop');
         Route::post('/my-admin/{id}/updateTop','PrDefaultController@updateTop');
         Route::get('/my-admin/{id}/editOther','PrDefaultController@editOther');
+        Route::post('/my-admin/{id}/updateOther','PrDefaultController@updateOther');
 
     // Primary Layout
     Route::get('/my-admin/primary-layout/default','PrDefaultController@index')->name('pr-default');
