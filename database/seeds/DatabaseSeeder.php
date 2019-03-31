@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         //     PrDefaultTopSeeder::class,
         //     PrDefaultOtherSeeder::class,
         // ]);
-        $this->call(ScKontakSeeder::class);
+        // $this->call(ScKontakSeeder::class);
+        $this->call(ScGaleriSeeder::class);
     }
 }

@@ -35,6 +35,8 @@ Route::group(['middleware'=>['auth']],function(){
     // Secondary Layout
     // --Galeri
     Route::get('/my-admin/secondary-layout/galeri','ScGaleriController@galeri')->name('sc-galeri');
+    Route::get('/listGaleri','ScGaleriController@getGaleriList')->name('listGaleri');
+    Route::post('/addGaleri','ScGaleriController@addGaleri')->name('addGaleri');
     // --Service
     Route::get('/my-admin/secondary-layout/service','ScServiceController@service')->name('sc-service');
     // --About
