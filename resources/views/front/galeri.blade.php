@@ -133,10 +133,10 @@
         			</div>
         			<div class="col-lg-3 col-md-4 col-sm-6 unv">
         				<div class="h_gallery_item">
-        					<img src="srcFront/img/gallery/gallery-12.jpg" alt="">
+        					<img src="img/banner/banner-2.jpg" alt="">
         					<div class="hover">
         						<a href="#"><h4>Spreading Peace to world</h4></a>
-        						<a class="light" href="srcFront/img/gallery/gallery-12.jpg"><i class="fa fa-expand"></i></a>
+        						<a class="light" href="img/banner/banner-2.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
         			</div>

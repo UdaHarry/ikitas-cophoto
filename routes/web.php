@@ -34,16 +34,21 @@ Route::group(['middleware'=>['auth']],function(){
 
     // Secondary Layout
     // --Galeri
-    Route::get('/my-admin/secondary-layout/galeri','ScGaleriController@galeri')->name('sc-galeri');
-    Route::get('/listGaleri','ScGaleriController@getGaleriList')->name('listGaleri');
-    Route::post('/addGaleri','ScGaleriController@addGaleri')->name('addGaleri');
+    Route::get('/galeri','ScGaleriController@galeri')->name('sc-galeri');
+    Route::get('/galeri/listGaleri','ScGaleriController@getGaleriList')->name('listGaleri');
+    Route::post('/galeri/addGaleri','ScGaleriController@addGaleri');
+    Route::get('/galeri/{id}/editGaleri','ScGaleriController@editGaleri');
+    Route::post('/galeri/updateGaleri','ScGaleriController@updateGaleri');
+    Route::post('/galeri/{id}/deleteGaleri','ScGaleriController@deleteGaleri');
+    // --Galeri -> list
+    Route::get('/listGaleriLabel','ScGaleriController@getGaleriLabelList')->name('listGaleriLabel');
     // --Service
-    Route::get('/my-admin/secondary-layout/service','ScServiceController@service')->name('sc-service');
+    Route::get('/service','ScServiceController@service')->name('sc-service');
     // --About
-    Route::get('/my-admin/secondary-layout/sambutan','ScAboutController@sambutan')->name('sc-sambutan');
-    Route::get('/my-admin/secondary-layout/team','ScAboutController@team')->name('sc-team');
+    Route::get('/sambutan','ScAboutController@sambutan')->name('sc-sambutan');
+    Route::get('/team','ScAboutController@team')->name('sc-team');
     // --Contact
-    Route::get('/my-admin/secondary-layout/kontak','ScContactController@kontak')->name('sc-kontak');
+    Route::get('/kontak','ScContactController@kontak')->name('sc-kontak');
     Route::get('/my-admin/{id}/editKontak','ScContactController@editKontak');
     Route::post('/my-admin/{id}/updateKontak','ScContactController@updateKontak');
 

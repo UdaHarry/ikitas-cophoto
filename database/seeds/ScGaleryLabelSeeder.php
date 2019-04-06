@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ScGaleriSeeder extends Seeder
+class ScGaleryLabelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ScGaleriSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ScGaleri::class, 3)->create();
+        factory(App\ScGaleriLabel::class, 3)->create();
     }
 }
