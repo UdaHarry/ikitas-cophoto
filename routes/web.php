@@ -39,7 +39,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/galeri/addGaleri','ScGaleriController@addGaleri');
     Route::get('/galeri/{id}/editGaleri','ScGaleriController@editGaleri');
     Route::post('/galeri/updateGaleri','ScGaleriController@updateGaleri');
-    Route::post('/galeri/{id}/deleteGaleri','ScGaleriController@deleteGaleri');
+    Route::delete('/deleteGaleri/{id}','ScGaleriController@deleteGaleri');
     // --Galeri -> list
     Route::get('/listGaleriLabel','ScGaleriController@getGaleriLabelList')->name('listGaleriLabel');
     // --Service

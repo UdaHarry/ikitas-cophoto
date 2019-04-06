@@ -50,8 +50,8 @@ class ScGaleriController extends Controller
     }
 
     public function deleteGaleri($id){
-      $deleteGaleri = ScGaleri::find($id);
-      $deleteGaleri->delete();
+      ScGaleri::destroy($id);
+      return response()->json(['done']);
     }
 
     public function updateGaleri(Request $request){

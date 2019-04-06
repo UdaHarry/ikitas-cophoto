@@ -173,20 +173,15 @@
     }
 
     function deleteDataGaleri(id){
-        // $.ajax({
-        // url : "/galeri/"+id+"/deleteGaleri",
-        // type : "POST",
-        // data : {'_method' : 'DELETE', '_token' : $('meta[name=csrf-token]').attr('content')},
-        // success : function(data){
-        //     table.ajax.reload();
-        // },
-        // error : function(){
-        //     alert("Tidak dapat menghapus data!");
-        // }
-        // });
+        // alert(id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
-            url : "galeri/"+id+"/deleteGaleri",
-            type : "POST",
+            url : "deleteGaleri/"+id,
+            type : "DELETE",
             dataType : "JSON",
             success : function(data){
                 table.ajax.reload();
