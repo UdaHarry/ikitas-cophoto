@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" action="{{ url('/galeri/addLabel')}}">
     @csrf
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Label</h5>
@@ -16,7 +16,7 @@
         <div class="form-group row">
                 <label for="label" class="col-sm-5 col-form-label">Label<br><p class="d-inline" style="font-size: 7pt;color:red;"><i>( Max 25 Character )</i></p></label>
                 <div class="col-sm-7">
-                <input type="text" class="form-control" id="label" name="label" maxlength="35" required>
+                <input type="text" class="form-control" id="galeri_label" name="galeri_label" maxlength="35" required>
                 </div>
             </div>
         <!-- Quotes -->

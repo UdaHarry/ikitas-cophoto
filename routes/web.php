@@ -42,6 +42,10 @@ Route::group(['middleware'=>['auth']],function(){
     Route::delete('/deleteGaleri/{id}','ScGaleriController@deleteGaleri');
     // --Galeri -> list
     Route::get('/listGaleriLabel','ScGaleriController@getGaleriLabelList')->name('listGaleriLabel');
+    Route::post('/galeri/addLabel','ScGaleriController@addLabel');
+    Route::get('/galeri/{id}/editLabel','ScGaleriController@editLabel');
+    Route::post('/galeri/updateLabel','ScGaleriController@updateLabel');
+    Route::delete('/deleteLabel/{id}','ScGaleriController@deleteLabel');
     // --Service
     Route::get('/service','ScServiceController@service')->name('sc-service');
     // --About

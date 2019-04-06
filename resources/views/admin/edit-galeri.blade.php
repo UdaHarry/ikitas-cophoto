@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-    <form id="editGaleri" data-table-target="galeriTable" method="POST" enctype="multipart/form-data" action="{{ url('/galeri/updateGaleri')}}">
+    <form data-table-target="galeriTable" method="POST" enctype="multipart/form-data" action="{{ url('/galeri/updateGaleri')}}">
     @csrf
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>

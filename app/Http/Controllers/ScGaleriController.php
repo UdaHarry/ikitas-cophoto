@@ -55,7 +55,7 @@ class ScGaleriController extends Controller
     }
 
     public function updateGaleri(Request $request){
-      $updateGaleri = ScGaleri::find($request->id);
+      $updateGaleri = ScGaleri::find($request['id']);
       if ($request->hasfile('edit_foto')) {
         $path = $request->file('edit_foto')->store('galeri');
         $updateGaleri->foto = "storage/".$path;
@@ -89,8 +89,38 @@ class ScGaleriController extends Controller
                ->addColumn('label',function(ScGaleriLabel $Glabel){
                     return $Glabel->label;
                  })
-               ->addColumn('action','admin.action-button-galeri')
-               ->rawColumns(['foto','action'])
+               ->addColumn('action',function(ScGaleriLabel $Glabel){
+                return '<div class="button-list" >
+                            <!-- Custom width modal -->
+                            <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-warning"  onclick="editDataLabel('.$Glabel->id.');"><i class="fa fa-wrench"></i></button>
+                        
+                            <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-danger" onclick="deleteDataLabel('.$Glabel->id.');"><i class="fas fa-trash-alt"></i></button>
+                        </div>';
+                })
                ->make(true);    
+    }
+
+    public function editLabel($id){
+      $label = ScGaleriLabel::find($id);
+      echo json_encode($label);
+    }
+
+    public function deleteLabel($id){
+      ScGaleriLabel::destroy($id);
+      return response()->json(['done']);
+    }
+
+    public function addLabel(Request $request){
+      $addLabel = new ScGaleriLabel;
+      $addLabel->label = $request['galeri_label'];
+      $addLabel->save();
+      return redirect('/galeri')->with('sukses', 'Suksess Menambahkan');
+    }
+
+    public function updateLabel(Request $request){
+      $updateLabel = ScGaleriLabel::find($request['id_label']);
+      $updateLabel->label = $request['edt_label'];
+      $updateLabel->update();
+      return redirect('/galeri')->with('sukses', 'Suksess Update');
     }
 }

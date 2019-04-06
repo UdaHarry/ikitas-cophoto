@@ -70,6 +70,7 @@
             </div>
         </div>
         @include('admin.add-galeri-label')
+        @include('admin.edit-galeri-label')
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="galeriListTable" width="100%" cellspacing="0">
@@ -103,7 +104,7 @@
 
 <script>
     var save_method;
-    var table;
+    var table, table2;
     $(function(){
        $("#sc-gal").addClass("active");
 
@@ -142,7 +143,7 @@
     }
 
     function showLabel(){
-        $('#galeriListTable').dataTable({
+        table2 = $('#galeriListTable').dataTable({
             "bDestroy": true,
             processing:true,
             serverSide:true,
@@ -191,9 +192,43 @@
             type : "DELETE",
             dataType : "JSON",
             success : function(data){
-                setInterval( function () {
                     table.api().ajax.reload();
-                }, 2000 );
+            },
+            error : function(){
+                alert("Tidak dapat menyimpan data!");
+            }   
+        });
+    }
+
+    function editDataLabel(id){
+        var iDx = id;
+        $('#editLabel').modal('show');
+        $.ajax({
+            url : "galeri/"+id+"/editLabel",
+            type : "GET",
+            dataType : "JSON",
+            success : function(data){
+                $('#id_label').val(data.id);
+                $('#edt_label').val(data.label);
+            },
+            error : function(){
+                alert("Tidak dapat menyimpan data!");
+            }   
+        });
+    }
+
+    function deleteDataLabel(id){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url : "deleteLabel/"+id,
+            type : "DELETE",
+            dataType : "JSON",
+            success : function(data){
+                    table2.api().ajax.reload();
             },
             error : function(){
                 alert("Tidak dapat menyimpan data!");
