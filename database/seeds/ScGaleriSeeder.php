@@ -11,6 +11,6 @@ class ScGaleriSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ScGaleri::class, 3)->create();
+        factory(App\ScGaleri::class, 12)->create();
     }
 }

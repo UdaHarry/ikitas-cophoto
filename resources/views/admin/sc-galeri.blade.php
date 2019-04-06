@@ -103,6 +103,7 @@
 
 <script>
     var save_method;
+    var table;
     $(function(){
        $("#sc-gal").addClass("active");
 
@@ -115,7 +116,12 @@
             $("div.alert").remove();
         }, 5000 );
 
-       $('#galeriTable').dataTable({
+        showGaleri();
+        showLabel();
+    });
+
+    function showGaleri(){
+        table = $('#galeriTable').dataTable({
             "bDestroy": true,
             processing:true,
             serverSide:true, 
@@ -133,7 +139,9 @@
                 { "width": "10%", "targets": 0 },
             ]
         });
+    }
 
+    function showLabel(){
         $('#galeriListTable').dataTable({
             "bDestroy": true,
             processing:true,
@@ -152,7 +160,7 @@
                 { "width": "30%", "targets": 2 }
             ]
         });
-    });
+    }
 
     function editDataGaleri(id){
         var iDx = id;
@@ -173,7 +181,6 @@
     }
 
     function deleteDataGaleri(id){
-        // alert(id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -184,7 +191,9 @@
             type : "DELETE",
             dataType : "JSON",
             success : function(data){
-                table.ajax.reload();
+                setInterval( function () {
+                    table.api().ajax.reload();
+                }, 2000 );
             },
             error : function(){
                 alert("Tidak dapat menyimpan data!");
