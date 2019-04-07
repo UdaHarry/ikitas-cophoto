@@ -147,7 +147,7 @@
             columns:[
               {data:'id',name:'id'},
               {data:'foto',name:'foto'},
-              {data:'label',name:'lavel'},
+              {data:'label',name:'label'},
               {data:'quote',name:'quote'},
               {data:'action',name:'action'}
             ],

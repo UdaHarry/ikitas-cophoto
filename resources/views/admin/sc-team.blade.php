@@ -23,7 +23,6 @@
 
 <div class="row">
 <!-- Galeri -->
-<div class="col-lg-7 col-md-7">
     <div class="card shadow mb-4 border-left-primary">
     <div class="card-header py-3">
         <div class="row no-gutters align-items-center">
@@ -46,9 +45,13 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Gambar</th>
-                        <th>Label</th>
-                        <th>Quote</th>
+                        <th>Foto</th>
+                        <th>Nama</th>
+                        <th>Jobdesk</th>
+                        <th>Facebook</th>
+                        <th>Instagram</th>
+                        <th>Twitter</th>
+                        <th>Linkedin</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -57,8 +60,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
-
     </div>
 </div>
 <!-- Galeri -->
@@ -76,7 +77,30 @@
 <script>
     var table;
     $(function(){
-       $("#sc-abt").addClass("active"); 
+       $("#sc-abt").addClass("active");
+       showTeam();
     });
+
+    function showTeam(){
+        table = $('#teamTable').dataTable({
+            "bDestroy": true,
+            processing:true,
+            serverSide:true, 
+            "lengthMenu": [[10, 15, 25,], [10, 15, 25]],
+            ajax: "{!! route('listTeam') !!}",
+            order:[0,'desc'],
+            columns:[
+              {data:'id',name:'id'},
+              {data:'foto',name:'foto'},
+              {data:'nama',name:'nama'},
+              {data:'jobdesk',name:'jobdesk'},
+              {data:'facebook',name:'facebook'},
+              {data:'instagram',name:'instagram'},
+              {data:'twitter',name:'twitter'},
+              {data:'linkedin',name:'linkedin'},
+              {data:'action',name:'action'}
+            ]
+        });
+    }
 </script>
 @endsection

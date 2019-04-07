@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\ScAboutSambutan;
 use App\ScAboutBest;
+use App\ScAboutTeam;
 
 class ScAboutController extends Controller
 {
@@ -95,5 +96,46 @@ class ScAboutController extends Controller
     public function team()
     {
         return view('admin.sc-team');
+    }
+
+    public function getListTeam(){
+        return Datatables::of(ScAboutTeam::query())
+               ->setRowId(function(ScAboutTeam $team){
+                    return $team->id;
+                 })
+               ->setRowAttr([
+                    "align" => "center"
+                 ])
+               ->addColumn('foto',function(ScAboutTeam $team){
+                return "<img src='".$team->photo_link()."' style='150px' height='150px' />";
+                 })
+               ->addColumn('nama',function(ScAboutTeam $team){
+                    return $team->nama;
+                 })
+               ->addColumn('jobdesk',function(ScAboutTeam $team){
+                    return $team->jobdesk;
+                 })
+               ->addColumn('facebook',function(ScAboutTeam $team){
+                      return $team->facebook;
+                 })
+               ->addColumn('instagram',function(ScAboutTeam $team){
+                    return $team->instagram;
+                 })  
+               ->addColumn('twitter',function(ScAboutTeam $team){
+                    return $team->twitter;
+                 })
+               ->addColumn('linkedin',function(ScAboutTeam $team){
+                    return $team->linkedin;
+                 }) 
+               ->addColumn('action',function(ScAboutTeam $team){
+                return '<div class="button-list" >
+                            <!-- Custom width modal -->
+                            <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-warning"  onclick="editDataTeam('.$team->id.');"><i class="fa fa-wrench"></i></button>
+                        
+                            <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-danger" onclick="deleteDataTeam('.$team->id.');"><i class="fas fa-trash-alt"></i></button>
+                        </div>';
+                })
+               ->rawColumns(['foto','action'])
+               ->make(true);    
     }
 }

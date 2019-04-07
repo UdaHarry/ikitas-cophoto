@@ -65,6 +65,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::delete('/deleteBest/{id}','ScAboutController@deleteBest');
     // --About -> team
     Route::get('/my-team','ScAboutController@team')->name('sc-team');
+    Route::get('/my-team/listTeam','ScAboutController@getListTeam')->name('listTeam');
     // --Contact
     Route::get('/my-kontak','ScContactController@kontak')->name('sc-kontak');
     Route::get('/my-kontak/{id}/editKontak','ScContactController@editKontak');
