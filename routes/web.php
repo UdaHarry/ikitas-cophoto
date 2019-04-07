@@ -57,7 +57,12 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/my-sambutan','ScAboutController@sambutan')->name('sc-sambutan');
     Route::get('/my-sambutan/{id}/editSambutan','ScAboutController@editSambutan');
     Route::post('/my-sambutan/{id}/updateSambutan','ScAboutController@updateSambutan');
-    Route::get('/my-sambutan/listBest','ScAboutController@listBest')->name('listBest');
+    // --About -> best
+    Route::get('/my-sambutan/listBest','ScAboutController@getListBest')->name('listBest');
+    Route::post('/my-sambutan/addBest','ScAboutController@addBest');
+    Route::get('/my-sambutan/{id}/editBest','ScAboutController@editBest');
+    Route::post('/my-sambutan/updateBest','ScAboutController@updateBest');
+    Route::delete('/deleteBest/{id}','ScAboutController@deleteBest');
     // --About -> team
     Route::get('/my-team','ScAboutController@team')->name('sc-team');
     // --Contact

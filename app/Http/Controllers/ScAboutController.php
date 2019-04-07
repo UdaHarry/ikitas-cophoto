@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\ScAboutSambutan;
+use App\ScAboutBest;
 
 class ScAboutController extends Controller
 {
@@ -38,9 +40,56 @@ class ScAboutController extends Controller
         }
     }
 
-    public function listBest($id){
-        $service = ScService::find($id);
-        echo json_encode($service);
+    public function getListBest(){
+        return Datatables::of(ScAboutBest::query())
+               ->setRowId(function(ScAboutBest $best){
+                    return $best->id;
+                 })
+               ->setRowAttr([
+                    "align" => "center"
+                 ])
+               ->addColumn('title',function(ScAboutBest $best){
+                    return $best->title;
+                 })
+               ->addColumn('deskripsi',function(ScAboutBest $best){
+                    return $best->deskripsi;
+                 })
+               ->addColumn('action',function(ScAboutBest $best){
+                return '<div class="button-list" >
+                            <!-- Custom width modal -->
+                            <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-warning" onclick="editDataBest('.$best->id.');" ><i class="fa fa-wrench"></i></button>
+                        
+                            <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-danger" onclick="deleteDataBest('.$best->id.');" ><i class="fas fa-trash-alt"></i></button>
+                        </div>';
+                })
+               ->rawColumns(['action'])
+               ->make(true);    
+    }
+
+    public function addBest(Request $request){
+        $addBest = new ScAboutBest;
+        $addBest->title = $request['add_title'];
+        $addBest->deskripsi = $request['add_Keterangan'];
+        $addBest->save();
+        return redirect('/my-sambutan')->with('sukses', 'Suksess Menambahkan');
+    }
+    
+    public function editBest($id){
+        $editBest = ScAboutBest::find($id);
+        echo json_encode($editBest);
+    }
+
+    public function updateBest(Request $request){
+        $updateBest = ScAboutBest::find($request['id_best']);
+        $updateBest->title = $request['edit_title'];
+        $updateBest->deskripsi = $request['edit_Keterangan'];
+        $updateBest->update();
+        return redirect('/my-sambutan')->with('sukses', 'Update Suksess');
+    }
+
+    public function deleteBest($id){
+        ScAboutBest::destroy($id);
+        return response()->json(['done']);
     }
 
     public function team()

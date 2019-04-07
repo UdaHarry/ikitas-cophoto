@@ -19,29 +19,49 @@
       </div>
     @endif
 
+    
+    @include('admin.edit-best')
+    @include('admin.modal-hapus')
+
 <div class="row">
     <div class="col-lg-7 col-md-7">
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-medal"></i> Why we are the best</h4>
+        <div class="card shadow mb-4 border-left-primary">
+        <div class="card-header py-3">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">Service</div>
+                </div>
+                <div class="col-auto m-2">
+                    <button type="button" class="btn btn-sm btn-info btn-icon-split" data-toggle="modal" data-target="#addBest">
+                        <span class="icon text-white-50">
+                        <i class="fas fa-plus-circle"></i>
+                        </span>
+                        <span class="text">Tambah</span>
+                    </button>
+                </div>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Title</th>
-                      <th>Deskripsi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
+        </div>
+        @include('admin.add-best')
+        @include('admin.edit-best')
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="bestTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Deskripsi</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
                 </table>
-              </div>
             </div>
-          </div>
+        </div>
+        </div>
+
     </div>   
 
     <!-- Area Landing-->
@@ -125,6 +145,7 @@
 <script src="{{ asset('srcAdmin/js/demo/datatables-demo.js')}}"></script>
 
 <script>
+    var table;
     $("input[type='file'][id$='img_sabutan']").change(function(e){
         var fileName = e.target.files[0].name;
         $('.inp-1').html(fileName);
@@ -133,6 +154,7 @@
     $(function(){
         $("#sc-abt").addClass("active");
         descriptionLanding();
+        showBest();
         setTimeout(function(){
             $("div.alert").remove();
         }, 5000 );
@@ -153,6 +175,63 @@
             error : function(){
               alert("Tidak dapat menyimpan data!");
             }   
+        });
+    }
+
+    function showBest(){
+      table = $('#bestTable').dataTable({
+            "bDestroy": true,
+            processing:true,
+            serverSide:true, 
+            "lengthMenu": [[ 10, 15, 25,], [10, 15, 25]],
+            ajax: "{!! route('listBest') !!}",
+            order:[0,'desc'],
+            columns:[
+              {data:'id',name:'id'},
+              {data:'title',name:'title'},
+              {data:'deskripsi',name:'deskripsi'},
+              {data:'action',name:'action'}
+            ]
+      });
+    }
+
+    function editDataBest(id){
+        $('#editBest').modal('show');
+        $.ajax({
+            url : "my-sambutan/"+id+"/editBest",
+            type : "GET",
+            dataType : "JSON",
+            success : function(data){
+                $('#id_best').val(data.id);
+                $('#edit_title').val(data.title);
+                $('#edit_Keterangan').val(data.deskripsi);
+            },
+            error : function(){
+                alert("Tidak dapat menyimpan data!");
+            }   
+        });
+    }
+
+    function deleteDataBest(id){
+        $('#modalHapus').modal('show');
+        $('button#btn_delete').click(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : "deleteBest/"+id,
+                type : "DELETE",
+                dataType : "JSON",
+                success : function(data){
+                        $('#modalHapus').modal('hide');
+                        table.api().ajax.reload();
+                },
+                error : function(){
+                    alert("Tidak dapat menyimpan data!");
+                }   
+            });
         });
     }
 </script>
