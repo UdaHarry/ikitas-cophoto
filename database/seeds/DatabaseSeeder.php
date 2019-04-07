@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             PrDefaultOtherSeeder::class,
             ScKontakSeeder::class,
             ScGaleriSeeder::class,
-            ScGaleryLabelSeeder::class
+            ScGaleryLabelSeeder::class,
+            ScServiceSeeder::class
         ]);
         // $this->call(ScGaleryLabelSeeder::class);
     }
