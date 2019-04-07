@@ -11,6 +11,13 @@
         {{session('sukses')}}
     </div>
 @endif
+
+<div class="alert alert-success alert-dismissible" style="display:none">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <i class="icon fa fa-check"></i>
+                  Perubahan berhasil disimpan.
+                </div>
+
 <div class="row">
 <div class="col-lg-7 col-md-7">
     <div class="card shadow mb-4 border-left-primary">
@@ -182,21 +189,26 @@
     }
 
     function deleteDataGaleri(id){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url : "deleteGaleri/"+id,
-            type : "DELETE",
-            dataType : "JSON",
-            success : function(data){
-                    table.api().ajax.reload();
-            },
-            error : function(){
-                alert("Tidak dapat menyimpan data!");
-            }   
+        $('#modalHapus').modal('show');
+        
+        $('button#btn_delete').click(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : "deleteGaleri/"+id,
+                type : "DELETE",
+                dataType : "JSON",
+                success : function(data){
+                        $('#modalHapus').modal('hide');
+                        table.api().ajax.reload();
+                },
+                error : function(){
+                    alert("Tidak dapat menyimpan data!");
+                }   
+            });
         });
     }
 
@@ -218,21 +230,25 @@
     }
 
     function deleteDataLabel(id){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url : "deleteLabel/"+id,
-            type : "DELETE",
-            dataType : "JSON",
-            success : function(data){
-                    table2.api().ajax.reload();
-            },
-            error : function(){
-                alert("Tidak dapat menyimpan data!");
-            }   
+        $('#modalHapus').modal('show');
+        $('button#btn_delete').click(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : "deleteLabel/"+id,
+                type : "DELETE",
+                dataType : "JSON",
+                success : function(data){
+                        $('#modalHapus').modal('hide');
+                        table2.api().ajax.reload();
+                },
+                error : function(){
+                    alert("Tidak dapat menyimpan data!");
+                }   
+            });
         });
     }
 </script>

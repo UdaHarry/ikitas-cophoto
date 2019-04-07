@@ -34,27 +34,27 @@ Route::group(['middleware'=>['auth']],function(){
 
     // Secondary Layout
     // --Galeri
-    Route::get('/galeri','ScGaleriController@galeri')->name('sc-galeri');
-    Route::get('/galeri/listGaleri','ScGaleriController@getGaleriList')->name('listGaleri');
-    Route::post('/galeri/addGaleri','ScGaleriController@addGaleri');
-    Route::get('/galeri/{id}/editGaleri','ScGaleriController@editGaleri');
-    Route::post('/galeri/updateGaleri','ScGaleriController@updateGaleri');
+    Route::get('/my-galeri','ScGaleriController@galeri')->name('sc-galeri');
+    Route::get('/my-galeri/listGaleri','ScGaleriController@getGaleriList')->name('listGaleri');
+    Route::post('/my-galeri/addGaleri','ScGaleriController@addGaleri');
+    Route::get('/my-galeri/{id}/editGaleri','ScGaleriController@editGaleri');
+    Route::post('/my-galeri/updateGaleri','ScGaleriController@updateGaleri');
     Route::delete('/deleteGaleri/{id}','ScGaleriController@deleteGaleri');
     // --Galeri -> list
     Route::get('/listGaleriLabel','ScGaleriController@getGaleriLabelList')->name('listGaleriLabel');
-    Route::post('/galeri/addLabel','ScGaleriController@addLabel');
-    Route::get('/galeri/{id}/editLabel','ScGaleriController@editLabel');
-    Route::post('/galeri/updateLabel','ScGaleriController@updateLabel');
+    Route::post('/my-galeri/addLabel','ScGaleriController@addLabel');
+    Route::get('/my-galeri/{id}/editLabel','ScGaleriController@editLabel');
+    Route::post('/my-galeri/updateLabel','ScGaleriController@updateLabel');
     Route::delete('/deleteLabel/{id}','ScGaleriController@deleteLabel');
     // --Service
-    Route::get('/service','ScServiceController@service')->name('sc-service');
+    Route::get('/my-service','ScServiceController@service')->name('sc-service');
     // --About
-    Route::get('/sambutan','ScAboutController@sambutan')->name('sc-sambutan');
-    Route::get('/team','ScAboutController@team')->name('sc-team');
+    Route::get('/my-sambutan','ScAboutController@sambutan')->name('sc-sambutan');
+    Route::get('/my-team','ScAboutController@team')->name('sc-team');
     // --Contact
-    Route::get('/kontak','ScContactController@kontak')->name('sc-kontak');
-    Route::get('/my-admin/{id}/editKontak','ScContactController@editKontak');
-    Route::post('/my-admin/{id}/updateKontak','ScContactController@updateKontak');
+    Route::get('/my-kontak','ScContactController@kontak')->name('sc-kontak');
+    Route::get('/my-kontak/{id}/editKontak','ScContactController@editKontak');
+    Route::post('/my-kontak/{id}/updateKontak','ScContactController@updateKontak');
 
     /*-----==========Back End==========-----*/
 
