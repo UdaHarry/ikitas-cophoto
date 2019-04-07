@@ -63,7 +63,7 @@ class ScGaleriController extends Controller
       $updateGaleri->label = $request['edit_label'];
       $updateGaleri->quote = $request['edit_quote'];
       $updateGaleri->update();
-      return redirect('/galeri')->with('sukses', 'Suksess Update');
+      return redirect('/my-galeri')->with('sukses', 'Suksess Update');
     }
 
     public function addGaleri(Request $request){
@@ -75,7 +75,7 @@ class ScGaleriController extends Controller
         $addGaleri->label = $request['label'];
         $addGaleri->quote = $request['quote'];
         $addGaleri->save();
-        return redirect('/galeri')->with('sukses', 'Suksess Menambahkan');
+        return redirect('/my-galeri')->with('sukses', 'Suksess Menambahkan');
     }
 
     public function getGaleriLabelList(){
@@ -97,6 +97,7 @@ class ScGaleriController extends Controller
                             <button type="button" class="btn btn-sm btn-icon waves-effect waves-light btn-danger" onclick="deleteDataLabel('.$Glabel->id.');"><i class="fas fa-trash-alt"></i></button>
                         </div>';
                 })
+                ->rawColumns(['action'])
                ->make(true);    
     }
 
@@ -114,13 +115,13 @@ class ScGaleriController extends Controller
       $addLabel = new ScGaleriLabel;
       $addLabel->label = $request['galeri_label'];
       $addLabel->save();
-      return redirect('/galeri')->with('sukses', 'Suksess Menambahkan');
+      return redirect('/my-galeri')->with('sukses', 'Suksess Menambahkan');
     }
 
     public function updateLabel(Request $request){
       $updateLabel = ScGaleriLabel::find($request['id_label']);
       $updateLabel->label = $request['edt_label'];
       $updateLabel->update();
-      return redirect('/galeri')->with('sukses', 'Suksess Update');
+      return redirect('/my-galeri')->with('sukses', 'Suksess Update');
     }
 }

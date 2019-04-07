@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-    <form method="POST" enctype="multipart/form-data" action="{{ url('/galeri/addLabel')}}">
+    <form method="POST" enctype="multipart/form-data" action="{{ url('/my-galeri/addLabel')}}">
     @csrf
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Label</h5>

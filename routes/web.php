@@ -41,13 +41,18 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/my-galeri/updateGaleri','ScGaleriController@updateGaleri');
     Route::delete('/deleteGaleri/{id}','ScGaleriController@deleteGaleri');
     // --Galeri -> list
-    Route::get('/listGaleriLabel','ScGaleriController@getGaleriLabelList')->name('listGaleriLabel');
+    Route::get('/my-galeri/listGaleriLabel','ScGaleriController@getGaleriLabelList')->name('listGaleriLabel');
     Route::post('/my-galeri/addLabel','ScGaleriController@addLabel');
     Route::get('/my-galeri/{id}/editLabel','ScGaleriController@editLabel');
     Route::post('/my-galeri/updateLabel','ScGaleriController@updateLabel');
     Route::delete('/deleteLabel/{id}','ScGaleriController@deleteLabel');
     // --Service
     Route::get('/my-service','ScServiceController@service')->name('sc-service');
+    Route::get('/my-service/listService','ScServiceController@getServiceList')->name('listService');
+    Route::post('/my-service/addService','ScServiceController@addService');
+    Route::get('/my-service/{id}/editService','ScServiceController@editService');
+    Route::post('/my-service/updateService','ScServiceController@updateService');
+    Route::delete('/deleteService/{id}','ScServiceController@deleteService');
     // --About
     Route::get('/my-sambutan','ScAboutController@sambutan')->name('sc-sambutan');
     Route::get('/my-team','ScAboutController@team')->name('sc-team');

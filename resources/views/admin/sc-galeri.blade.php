@@ -12,11 +12,7 @@
     </div>
 @endif
 
-<div class="alert alert-success alert-dismissible" style="display:none">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <i class="icon fa fa-check"></i>
-                  Perubahan berhasil disimpan.
-                </div>
+@include('admin.modal-hapus')
 
 <div class="row">
 <div class="col-lg-7 col-md-7">
@@ -110,7 +106,6 @@
 <script src="{{ asset('srcAdmin/js/demo/datatables-demo.js')}}"></script>
 
 <script>
-    var save_method;
     var table, table2;
     $(function(){
        $("#sc-gal").addClass("active");
@@ -174,7 +169,7 @@
         var iDx = id;
         $('#editGaleri').modal('show');
         $.ajax({
-            url : "galeri/"+id+"/editGaleri",
+            url : "my-galeri/"+id+"/editGaleri",
             type : "GET",
             dataType : "JSON",
             success : function(data){
@@ -216,7 +211,7 @@
         var iDx = id;
         $('#editLabel').modal('show');
         $.ajax({
-            url : "galeri/"+id+"/editLabel",
+            url : "my-galeri/"+id+"/editLabel",
             type : "GET",
             dataType : "JSON",
             success : function(data){

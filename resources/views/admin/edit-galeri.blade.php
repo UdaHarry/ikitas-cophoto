@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-    <form data-table-target="galeriTable" method="POST" enctype="multipart/form-data" action="{{ url('/galeri/updateGaleri')}}">
+    <form data-table-target="galeriTable" method="POST" enctype="multipart/form-data" action="{{ url('/my-galeri/updateGaleri')}}">
     @csrf
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>
@@ -57,27 +57,6 @@
       </div>
     </form>
 
-    </div>
-  </div>
-</div>
-
-
-<div id="modalHapus" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Hapus Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Anda Ingin Menghapus Data ?</p>
-      </div>
-      <div class="modal-footer">
-        <button id="btn_delete" type="button" class="btn btn-danger">Hapus</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-      </div>
     </div>
   </div>
 </div>
