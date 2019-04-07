@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
             ScKontakSeeder::class,
             ScGaleriSeeder::class,
             ScGaleryLabelSeeder::class,
-            ScServiceSeeder::class
+            ScServiceSeeder::class,
+            ScAboutSambutanSeeder::class,
         ]);
-        // $this->call(ScGaleryLabelSeeder::class);
+        // $this->call(ScAboutBest::class);
     }
 }

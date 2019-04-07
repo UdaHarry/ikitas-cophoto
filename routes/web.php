@@ -55,6 +55,10 @@ Route::group(['middleware'=>['auth']],function(){
     Route::delete('/deleteService/{id}','ScServiceController@deleteService');
     // --About
     Route::get('/my-sambutan','ScAboutController@sambutan')->name('sc-sambutan');
+    Route::get('/my-sambutan/{id}/editSambutan','ScAboutController@editSambutan');
+    Route::post('/my-sambutan/{id}/updateSambutan','ScAboutController@updateSambutan');
+    Route::get('/my-sambutan/listBest','ScAboutController@listBest')->name('listBest');
+    // --About -> team
     Route::get('/my-team','ScAboutController@team')->name('sc-team');
     // --Contact
     Route::get('/my-kontak','ScContactController@kontak')->name('sc-kontak');

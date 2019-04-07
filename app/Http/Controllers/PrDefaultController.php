@@ -21,8 +21,8 @@ class PrDefaultController extends Controller
 
     public function updateTop(Request $request, $id){
         $validator = Validator::make($request->all(), [
-            'img-landing' => 'mimes:jpeg,jpg,png,gif',
-            'img-banner' => 'mimes:jpeg,jpg,png,gif',
+            'img-landing' => 'mimes:jpeg,jpg,png',
+            'img-banner' => 'mimes:jpeg,jpg,png',
         ]);
         
         if ($validator->fails()) {

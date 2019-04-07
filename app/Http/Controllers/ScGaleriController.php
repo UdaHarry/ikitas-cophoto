@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\ScGaleri;
@@ -55,27 +56,43 @@ class ScGaleriController extends Controller
     }
 
     public function updateGaleri(Request $request){
-      $updateGaleri = ScGaleri::find($request['id']);
-      if ($request->hasfile('edit_foto')) {
-        $path = $request->file('edit_foto')->store('galeri');
-        $updateGaleri->foto = "storage/".$path;
+      $validator = Validator::make($request->all(), [
+          'foto' => 'mimes:jpeg,jpg,png',
+      ]);
+
+      if ($validator->fails()) {
+          return redirect('my-galeri')->with('gagal', 'Update Gagal');
+      } else{
+          $updateGaleri = ScGaleri::find($request['id']);
+          if ($request->hasfile('edit_foto')) {
+            $path = $request->file('edit_foto')->store('galeri');
+            $updateGaleri->foto = "storage/".$path;
+          }
+          $updateGaleri->label = $request['edit_label'];
+          $updateGaleri->quote = $request['edit_quote'];
+          $updateGaleri->update();
+          return redirect('/my-galeri')->with('sukses', 'Suksess Update');
       }
-      $updateGaleri->label = $request['edit_label'];
-      $updateGaleri->quote = $request['edit_quote'];
-      $updateGaleri->update();
-      return redirect('/my-galeri')->with('sukses', 'Suksess Update');
     }
 
     public function addGaleri(Request $request){
-        $addGaleri = new ScGaleri;
-        if ($request->hasfile('foto')) {
-          $path = $request->file('foto')->store('galeri');
-          $addGaleri->foto = "storage/".$path;
+        $validator = Validator::make($request->all(), [
+            'foto' => 'mimes:jpeg,jpg,png',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('my-galeri')->with('gagal', 'Gagal Menambahkan');
+        } else{
+            $addGaleri = new ScGaleri;
+            if ($request->hasfile('foto')) {
+              $path = $request->file('foto')->store('galeri');
+              $addGaleri->foto = "storage/".$path;
+            }
+            $addGaleri->label = $request['label'];
+            $addGaleri->quote = $request['quote'];
+            $addGaleri->save();
+            return redirect('/my-galeri')->with('sukses', 'Suksess Menambahkan');
         }
-        $addGaleri->label = $request['label'];
-        $addGaleri->quote = $request['quote'];
-        $addGaleri->save();
-        return redirect('/my-galeri')->with('sukses', 'Suksess Menambahkan');
     }
 
     public function getGaleriLabelList(){

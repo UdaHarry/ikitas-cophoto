@@ -5,12 +5,19 @@
 @endsection
 
 @section('content')
-@if(session('sukses'))
-    <div class="alert alert-success a" role="alert">
-        <i class="icon fa fa-check"></i>
-        {{session('sukses')}}
-    </div>
-@endif
+
+    @if(session('sukses'))
+      <div class="alert alert-success a" role="alert">
+          <i class="icon fa fa-check"></i>
+          {{session('sukses')}}
+      </div>
+    @endif
+    @if(session('gagal'))
+      <div class="alert alert-danger a" role="alert">
+          <i class="icon fas fa-exclamation-triangle"></i>
+          {{session('gagal')}}
+      </div>
+    @endif
 
 @include('admin.modal-hapus')
 
