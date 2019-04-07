@@ -22,6 +22,8 @@
 @include('admin.modal-hapus')
 
 <div class="row">
+
+<!-- Galeri -->
 <div class="col-lg-7 col-md-7">
     <div class="card shadow mb-4 border-left-primary">
     <div class="card-header py-3">
@@ -62,6 +64,9 @@
 
     </div>
 </div>
+<!-- Galeri -->
+
+<!-- label -->
 <div class="col-lg-5 col-md-5">
     <div class="card mb-4 border-left-primary">
         <div class="card-header py-3">
@@ -99,6 +104,7 @@
         </div>
     </div>   
 </div>
+<!-- label -->
 
 </div>
 

@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(ScAboutBestSeeder::class);
+        $this->call(ScAboutTeamSeeder::class);
         // $this->call([
         //     UsersTableSeeder::class,
         //     PrDefaultTopSeeder::class,
@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         //     ScGaleryLabelSeeder::class,
         //     ScServiceSeeder::class,
         //     ScAboutSambutanSeeder::class,
-        //     ScAboutBestSeeder::class
+        //     ScAboutBestSeeder::class,
+        //     ScAboutTeamSeeder::class
         // ]);
     }
 }
