@@ -66,6 +66,10 @@ Route::group(['middleware'=>['auth']],function(){
     // --About -> team
     Route::get('/my-team','ScAboutController@team')->name('sc-team');
     Route::get('/my-team/listTeam','ScAboutController@getListTeam')->name('listTeam');
+    Route::post('/my-team/addTeam','ScAboutController@addTeam');
+    Route::get('/my-team/{id}/editTeam','ScAboutController@editTeam');
+    Route::post('/my-team/updateTeam','ScAboutController@updateTeam');
+    Route::delete('/deleteTeam/{id}','ScAboutController@deleteTeam');
     // --Contact
     Route::get('/my-kontak','ScContactController@kontak')->name('sc-kontak');
     Route::get('/my-kontak/{id}/editKontak','ScContactController@editKontak');

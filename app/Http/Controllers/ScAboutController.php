@@ -138,4 +138,62 @@ class ScAboutController extends Controller
                ->rawColumns(['foto','action'])
                ->make(true);    
     }
+
+    public function addTeam(Request $request){
+        $validator = Validator::make($request->all(), [
+            'foto' => 'mimes:jpeg,jpg,png',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('my-team')->with('gagal', 'Gagal Menambahkan');
+        } else{
+            $addTeam = new ScAboutTeam;
+            if ($request->hasfile('foto')) {
+              $path = $request->file('foto')->store('team');
+              $addTeam->foto = "storage/".$path;
+            }
+            $addTeam->nama = $request['add_nama'];
+            $addTeam->jobdesk = $request['add_jobdesk'];
+            $addTeam->facebook = $request['add_facebook'];
+            $addTeam->instagram = $request['add_instagram'];
+            $addTeam->twitter = $request['add_twitter'];
+            $addTeam->linkedin = $request['add_linkedin'];
+            $addTeam->save();
+            return redirect('/my-team')->with('sukses', 'Suksess Menambahkan');
+        }
+    }
+
+    public function editTeam($id){
+        $editTeam = ScAboutTeam::find($id);
+        echo json_encode($editTeam);
+    }
+
+    public function updateTeam(Request $request){
+        $validator = Validator::make($request->all(), [
+            'foto' => 'mimes:jpeg,jpg,png',
+        ]);
+  
+        if ($validator->fails()) {
+            return redirect('my-team')->with('gagal', 'Update Gagal');
+        } else{
+            $updateTeam = ScAboutTeam::find($request['id']);
+            if ($request->hasfile('edit_foto')) {
+              $path = $request->file('edit_foto')->store('team');
+              $updateTeam->foto = "storage/".$path;
+            }
+            $updateTeam->nama = $request['edit_nama'];
+            $updateTeam->jobdesk = $request['edit_jobdesk'];
+            $updateTeam->facebook = $request['edit_facebook'];
+            $updateTeam->instagram = $request['edit_instagram'];
+            $updateTeam->twitter = $request['edit_twitter'];
+            $updateTeam->linkedin = $request['edit_linkedin'];
+            $updateTeam->update();
+            return redirect('/my-team')->with('sukses', 'Suksess Update');
+        }
+      }
+
+      public function deleteTeam($id){
+        ScAboutTeam::destroy($id);
+        return response()->json(['done']);
+      }
 }

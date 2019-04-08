@@ -20,6 +20,8 @@
     @endif
 
 @include('admin.modal-hapus')
+@include('admin.add-team')
+@include('admin.edit-team')
 
 <div class="row">
 <!-- Galeri -->
@@ -78,6 +80,16 @@
     var table;
     $(function(){
        $("#sc-abt").addClass("active");
+
+       $("input[type='file'][id$='foto']").change(function(e){
+          var fileName = e.target.files[0].name;
+          $('.inp-galeri').html(fileName);
+       });
+
+       setTimeout(function(){
+            $("div.alert").remove();
+        }, 5000 );
+
        showTeam();
     });
 
@@ -100,6 +112,51 @@
               {data:'linkedin',name:'linkedin'},
               {data:'action',name:'action'}
             ]
+        });
+    }
+
+    function editDataTeam(id){
+        $('#editTeam').modal('show');
+        $.ajax({
+            url : "my-team/"+id+"/editTeam",
+            type : "GET",
+            dataType : "JSON",
+            success : function(data){
+                $('#id').val(data.id);
+                $('#edit_nama').val(data.nama);
+                $('#edit_jobdesk').val(data.jobdesk);
+                $('#edit_facebook').val(data.facebook);
+                $('#edit_instagram').val(data.instagram);
+                $('#edit_twitter').val(data.twitter);
+                $('#edit_linkedin').val(data.linkedin);
+            },
+            error : function(){
+                alert("Tidak dapat menyimpan data!");
+            }   
+        });
+    }
+
+    function deleteDataTeam(id){
+        $('#modalHapus').modal('show');
+        
+        $('button#btn_delete').click(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : "deleteTeam/"+id,
+                type : "DELETE",
+                dataType : "JSON",
+                success : function(data){
+                        $('#modalHapus').modal('hide');
+                        table.api().ajax.reload();
+                },
+                error : function(){
+                    alert("Tidak dapat menyimpan data!");
+                }   
+            });
         });
     }
 </script>
