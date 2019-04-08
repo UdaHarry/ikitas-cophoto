@@ -8,12 +8,14 @@ use Yajra\Datatables\Datatables;
 use App\ScAboutSambutan;
 use App\ScAboutBest;
 use App\ScAboutTeam;
+use App\User;
 
 class ScAboutController extends Controller
 {
     public function sambutan()
     {
-        return view('admin.sc-sambutan');
+        $data['user'] = User::select('foto')->get();
+        return view('admin.sc-sambutan',$data);
     }
 
     public function editSambutan($id){

@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\ScGaleri;
 use App\ScGaleriLabel;
+use App\User;
 
 class ScGaleriController extends Controller
 {
     public function galeri()
     {   
+        $data['user'] = User::select('foto')->get();
         $data['label'] = ScGaleriLabel::get();
         return view('admin.sc-galeri',$data);
     }

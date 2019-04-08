@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ScKontak;
+use App\User;
 
 class ScContactController extends Controller
 {
     public function kontak()
     {
-        return view('admin.sc-kontak');
+        $data['user'] = User::select('foto')->get();
+        return view('admin.sc-kontak',$data);
     }
 
     public function editKontak($id)
@@ -22,7 +24,7 @@ class ScContactController extends Controller
     {
         $kontak = ScKontak::find($id);
         $kontak->update($request->all());
-        return redirect('/my-admin/secondary-layout/kontak')->with('sukses', 'Update Suksess');
+        return redirect('/my-kontak')->with('sukses', 'Update Suksess');
     }
 
 }

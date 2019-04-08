@@ -6,12 +6,14 @@ use Validator;
 use Illuminate\Http\Request;
 use App\PrDefaultTop;
 use App\PrDefaultOther;
+use App\User;
 
 class PrDefaultController extends Controller
 {
     public function index()
-    {
-        return view('admin.index');
+    {   
+        $data['user'] = User::select('foto')->get();
+        return view('admin.index', $data);
     }
 
     public function editTop($id){

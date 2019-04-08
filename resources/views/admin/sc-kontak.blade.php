@@ -11,7 +11,7 @@
         <div class="row">
           <!-- Area Landing-->
           <div class="col-lg-6 col-md-6">
-          <form id="form-top" method="POST" enctype="multipart/form-data" action="/my-admin/1/updateKontak">
+          <form id="form-top" method="POST" enctype="multipart/form-data" action="/my-kontak/1/updateKontak">
               @csrf
               <div class="shadow card mb-3">
                 <!-- card header -->
@@ -103,7 +103,7 @@
 
     function showData(){
       $.ajax({
-        url : "/my-admin/1/editKontak",
+        url : "/my-kontak/1/editKontak",
         type : "GET",
         dataType : "JSON",
         success : function(data){

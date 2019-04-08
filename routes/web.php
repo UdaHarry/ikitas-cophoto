@@ -74,6 +74,10 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/my-kontak','ScContactController@kontak')->name('sc-kontak');
     Route::get('/my-kontak/{id}/editKontak','ScContactController@editKontak');
     Route::post('/my-kontak/{id}/updateKontak','ScContactController@updateKontak');
+    // --Setting
+    Route::get('/my-setting','UserSettingController@setting')->name('user-setting');
+    Route::get('/my-setting/{id}/editSetting','UserSettingController@editSetting');
+    Route::post('/my-setting/{id}/updateSetting','UserSettingController@updateSetting');
 
     /*-----==========Back End==========-----*/
 

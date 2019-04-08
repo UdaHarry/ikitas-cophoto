@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\ScService;
+use App\User;
 
 class ScServiceController extends Controller
 {
     public function service()
     {
-        return view('admin.sc-service');
+        $data['user'] = User::select('foto')->get();
+        return view('admin.sc-service',$data);
         
     }
 
