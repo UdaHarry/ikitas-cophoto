@@ -25,3 +25,7 @@ Password : ikitas
 
 #### Mengaktifkan storage
 php artisan storage:link
+
+
+#### Menjalankan Aplikasi
+buka file lalu ketik perinta "php artisan serve" ,  tanpa tanda petik
